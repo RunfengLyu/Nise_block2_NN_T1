@@ -19,14 +19,14 @@ struct RSneuron {
   float theta = 0;   // threshold
 } rs_neuron[NUMBER_RS_NEURONS];
 
-  float time_step = 0.01;
+  float time_step = 0.1;
 
 
 void setup() {
-  // put your setup code here, to run once:
+
   Serial.begin(115200);
   delay(3000);
-  // put your main code here, to run repeatedly:
+
   Serial.println(rs_neuron[0].x);
   rs_neuron[1].b = 2.5;
   rs_neuron[1].T = 12;
@@ -47,14 +47,9 @@ void loop() {
     rs_neuron[i].x_prime = rs_neuron[i].x_prime_old + time_step * ((rs_neuron[i].y - rs_neuron[i].x_prime_old) / rs_neuron[i].T);
     rs_neuron[i].x = rs_neuron[i].x_old + time_step * (((rs_neuron[i].c_j * rs_neuron[i].s_j) - (rs_neuron[i].b * rs_neuron[i].x_prime) - rs_neuron[i].x_old)/ rs_neuron[i].tau);
 
-  //k1 = (T * y);
-  //k2 = (T/2 * y)
-  //x_prime = x_prime_old + (T * y);
-
-  // x = x_old + (tau * ((c_j * s_j) - (b * x_prime_old)));
   
-  rs_neuron[i].x_old = rs_neuron[i].x;
-  rs_neuron[i].x_prime_old = rs_neuron[i].x_prime;
+    rs_neuron[i].x_old = rs_neuron[i].x;
+    rs_neuron[i].x_prime_old = rs_neuron[i].x_prime;
   }
 
   delay(100);
@@ -65,7 +60,7 @@ void loop() {
   Serial.print("Neuron1:"); Serial.print(rs_neuron[1].y); Serial.print("  ");
   Serial.print("Neuron2:"); Serial.print(rs_neuron[2].y); Serial.println("  ");
 
-  //rs_neuron[2].s_j = 0;
+
 
   
   
