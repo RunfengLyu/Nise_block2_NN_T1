@@ -1,6 +1,6 @@
 #define NUMBER_RS_NEURONS 3
 
-//three neuron system, please comment different part to run different mode
+//three neuron system mode 2
 
 /******************************************************/ 
 //struct RSneuron 
@@ -93,8 +93,7 @@ void loop()
   Serial.print("Neuron0:"); Serial.print(rs_neuron[0].y); Serial.print("  ");
   Serial.print("Neuron1:"); Serial.print(rs_neuron[1].y); Serial.print("  ");
   Serial.print("Neuron2:"); Serial.print(rs_neuron[2].y); Serial.println("  ");
-  //Serial.println(float(!(count%2)));
-  //Serial.print("Neuron2:"); Serial.print(rs_neuron[2].y); Serial.println("  ");
+
 
   delay(100);
   
