@@ -1,6 +1,6 @@
 #define NUMBER_RS_NEURONS 20
 
-//three neuron system, please comment different part to run different mode
+//20 neuron system
 
 /******************************************************/ 
 //struct RSneuron 
@@ -41,12 +41,10 @@ float net_input = 0;
 
 void loop()
 {
-
-  //mode 1: neurons are double-sided connected, i.e a1 = a2 =2.5
   
   for(i = 0; i < NUMBER_RS_NEURONS; i ++){
     
-   if (i < NUMBER_RS_NEURONS/2 ){
+   if (i < NUMBER_RS_NEURONS/2 ){  // lest side neurons update
     
     if(i == 0){
     
@@ -82,7 +80,8 @@ void loop()
         net_input = 0;
       }
    }
-  else if(i >= NUMBER_RS_NEURONS/2){
+    
+  else if(i >= NUMBER_RS_NEURONS/2){  //right side neurons update
     if(i == 10){
     
         net_input = net_input + 1.5 * rs_neuron[i - 10].y + 1.5 * rs_neuron[i + 1].y;
