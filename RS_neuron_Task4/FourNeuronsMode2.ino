@@ -1,6 +1,6 @@
 #define NUMBER_RS_NEURONS 4
 
-// four neuron system
+// four neuron system mode 2
 
 /******************************************************/ 
 //struct RSneuron 
