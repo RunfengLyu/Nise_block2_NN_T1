@@ -9,7 +9,7 @@ struct RSneuron {
   float x = 0;       // membrane potential
   float x_old = 0;
   float y = 0;       // output response of neuron
-  float tau = 1;     // time const.
+  //float tau = 1;     // time const.
   int s = 50;     // impulse rate
   float b = 2.5;       // adaptation coefficient b = 0, 2.5, inf
   float x_prime = 0; // degree of adaptation
@@ -19,9 +19,9 @@ struct RSneuron {
   float theta = 0;   // threshold
 } rs_neuron[NUMBER_RS_NEURONS];
 
-float time_step = 1;
+float time_step = 0.01;
 
-
+float tau = 0.1;
 void setup() {
   
   Serial.begin(115200);
@@ -46,13 +46,13 @@ void loop()
   
   for(i = 0; i < NUMBER_RS_NEURONS; i ++){
     
-   if (i < NUMBER_RS_NEURONS + 1){
+   if (i < NUMBER_RS_NEURONS/2 + 1){
     
     if(i == 0){
     
-        net_input = net_input + 0.5 * rs_neuron[i + 10].y + 0.5 * rs_neuron[i + 1].y;
+        net_input = net_input + 1.5 * rs_neuron[i + 10].y + 1.5 * rs_neuron[i + 1].y;
           
-        rs_neuron[i].x = (1 - time_step)*rs_neuron[i].x_old + time_step * (-net_input + 1.0  - (rs_neuron[i].b * rs_neuron[i].x_prime_old));
+        rs_neuron[i].x = (1 - time_step/tau)*rs_neuron[i].x_old + time_step * (-net_input + 1.0  - (rs_neuron[i].b * rs_neuron[i].x_prime_old))/tau;
         
         rs_neuron[i].x_prime = (1 - time_step/rs_neuron[i].T)*rs_neuron[i].x_prime_old + time_step * rs_neuron[i].y / rs_neuron[i].T;
         
@@ -67,11 +67,11 @@ void loop()
       
       }  
     else if(i!=0){ 
-    net_input = net_input + 0.5 * rs_neuron[i-1].y + 1.5 * rs_neuron[i + 10].y + 0.5 * rs_neuron[i + 1].y;
+    net_input = net_input + 1.5 * rs_neuron[i-1].y + 1.5 * rs_neuron[i + 10].y + 1.5 * rs_neuron[i + 1].y;
       
      
     
-    rs_neuron[i].x = (1 - time_step)*rs_neuron[i].x_old + time_step * (-net_input + 1.0  - (rs_neuron[i].b * rs_neuron[i].x_prime_old));
+    rs_neuron[i].x = (1 - time_step/tau)*rs_neuron[i].x_old + time_step * (-net_input + 1.0  - (rs_neuron[i].b * rs_neuron[i].x_prime_old))/tau;
     
     rs_neuron[i].x_prime = (1 - time_step/rs_neuron[i].T)*rs_neuron[i].x_prime_old + time_step * rs_neuron[i].y / rs_neuron[i].T;
     
@@ -87,9 +87,9 @@ void loop()
    else{
     if(i == 11){
     
-        net_input = net_input + 0.5 * rs_neuron[i - 10].y + 0.5 * rs_neuron[i + 1].y;
+        net_input = net_input + 1.5 * rs_neuron[i - 10].y + 1.5 * rs_neuron[i + 1].y;
           
-        rs_neuron[i].x = (1 - time_step)*rs_neuron[i].x_old + time_step * (-net_input + 1.0  - (rs_neuron[i].b * rs_neuron[i].x_prime_old));
+        rs_neuron[i].x = (1 - time_step/tau)*rs_neuron[i].x_old + time_step * (-net_input + 1.0  - (rs_neuron[i].b * rs_neuron[i].x_prime_old))/tau;
         
         rs_neuron[i].x_prime = (1 - time_step/rs_neuron[i].T)*rs_neuron[i].x_prime_old + time_step * rs_neuron[i].y / rs_neuron[i].T;
         
@@ -104,11 +104,11 @@ void loop()
       
       }  
     else if(i!=11){ 
-    net_input = net_input + 0.5 * rs_neuron[i-1].y + 0.5 * rs_neuron[i - 10].y + 0.5 * rs_neuron[i + 1].y;
+    net_input = net_input + 1.5 * rs_neuron[i-1].y + 1.5 * rs_neuron[i - 10].y + 1.5 * rs_neuron[i + 1].y;
       
      
     
-    rs_neuron[i].x = (1 - time_step)*rs_neuron[i].x_old + time_step * (-net_input + 1.0  - (rs_neuron[i].b * rs_neuron[i].x_prime_old));
+    rs_neuron[i].x = (1 - time_step/tau)*rs_neuron[i].x_old + time_step * (-net_input + 1.0  - (rs_neuron[i].b * rs_neuron[i].x_prime_old))/tau;
     
     rs_neuron[i].x_prime = (1 - time_step/rs_neuron[i].T)*rs_neuron[i].x_prime_old + time_step * rs_neuron[i].y / rs_neuron[i].T;
     
@@ -149,7 +149,7 @@ void loop()
   //Serial.println(float(!(count%2)));
   //Serial.print("Neuron2:"); Serial.print(rs_neuron[2].y); Serial.println("  ");
 
-  delay(1000);
+  delay(20);
   
     
 }
