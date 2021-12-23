@@ -127,48 +127,6 @@ void loop()
     
     rs_neuron[3].x_prime_old = rs_neuron[3].x_prime;
 
-
-
-    /*
-    
-    rs_neuron[0].x = (1 - time_step)*rs_neuron[0].x_old + time_step * (-2.5 * rs_neuron[2].y + 1.0  - (rs_neuron[0].b * rs_neuron[0].x_prime_old));
-    
-    rs_neuron[0].x_prime = (1 - time_step/rs_neuron[0].T)*rs_neuron[0].x_prime_old + time_step * rs_neuron[0].y / rs_neuron[0].T;
-    
-    rs_neuron[0].y = max(0.0f, rs_neuron[0].x_old - rs_neuron[0].theta);
-    
-
-
-    rs_neuron[1].x = (1 - time_step)*rs_neuron[1].x_old + time_step * (-2.5 * rs_neuron[1].y + 1.0 - (rs_neuron[1].b * rs_neuron[1].x_prime_old));
-    
-    rs_neuron[1].x_prime = (1 - time_step/rs_neuron[1].T)*rs_neuron[1].x_prime_old + time_step * rs_neuron[1].y / rs_neuron[1].T;
-    
-    rs_neuron[1].y = max(0.0f, rs_neuron[1].x_old - rs_neuron[1].theta);
-    
-
-    rs_neuron[2].x = (1 - time_step)*rs_neuron[2].x_old + time_step * (-2.5 * rs_neuron[0].y + 1.0 - (rs_neuron[2].b * rs_neuron[2].x_prime_old));
-    
-    rs_neuron[2].x_prime = (1 - time_step/rs_neuron[2].T)*rs_neuron[2].x_prime_old + time_step * rs_neuron[2].y / rs_neuron[2].T;
-    
-    rs_neuron[2].y = max(0.0f, rs_neuron[2].x_old - rs_neuron[2].theta);
-
-
-    
-
-    rs_neuron[0].x_old = rs_neuron[0].x;
-    
-    rs_neuron[0].x_prime_old = rs_neuron[0].x_prime;
-    
-    rs_neuron[1].x_old = rs_neuron[1].x;
-    
-    rs_neuron[1].x_prime_old = rs_neuron[1].x_prime;
-
-    rs_neuron[2].x_old = rs_neuron[2].x;
-    
-    rs_neuron[2].x_prime_old = rs_neuron[2].x_prime;
-    
-    
-*/
   
 
   Serial.print("Neuron0:"); Serial.print(rs_neuron[0].y); Serial.print("  ");
